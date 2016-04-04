@@ -2,19 +2,24 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-#set $mod Mod4
-set $mod Mod1
-
+set $mod Mod4
 set $i3_path $HOME/.i3
-set $pictures_folder $HOME/pictures
+set $pictures_folder /home/anton/Pictures/
+
+# Hide borders
+# hide_edge_borders none
+hide_edge_borders both
+ 
+# Automatically hide titlebar
+new_window none
+for_window [class="^.*"] border pixel 
 
 # Fancy names for workspaces
 set $w1 1: Web
 set $w2 2: Terminal
 set $w3 3: Mail
-#set $w3 3
-set $w4 4
-set $w5 5
+set $w4 4: Music
+set $w5 5: Moive
 set $w6 6
 set $w7 7
 set $w8 8
@@ -26,10 +31,6 @@ bindsym $mod+Ctrl+l exec i3lock -c 000000 -i $pictures_folder/wallpaper.png -t #
 #bindsym $mod+Ctrl+l exec --no-startup-id $i3_path/i3exit lock, mode "default"
 bindsym $mod+b exec nautilus --no-desktop &
 
-# Automatically hide titlebar
-new_window none
-for_window [class="^.*"] border pixel 0
-    
 ## Assign section
 assign [class="^Firefox$"]      → $w1
 #assign [title="^DownThemAll$"]  → $w1
@@ -39,6 +40,11 @@ assign [class="^Firefox$"]      → $w1
 #assign [class="^Thunderbird$"]  → $w3
 assign [class="(?i)Terminal"] → $w2
 assign [class="(?i)Thunderbird"]  → $w3
+assign [class="(?i)Rhythmbox"]  → $w4
+assign [class="Deepin-music-player"]  → $w4
+assign [class="(?i)Guake"]  → $w2
+## assign [class="(?i)Totem"]  → $w5
+assign [class="(?i)Smplayer"]  → $w5
 
 #for_window [class="Guake"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -49,10 +55,22 @@ for_window [class="Mail"] border 1pixel
 #for_window [class="^Thunderbird$"] move workspace $w4
 for_window [title="Pidgin"] move left; resize shrink right 31px or 31 ppt
 
+# key bindings
+bindsym Mod1+r exec rhythmbox
+bindsym Mod1+f exec firefox 
+bindsym Mod1+g exec guake
+bindsym Mod1+t exec thunderbird 
+bindsym Mod1+d exec deepin-music-player
+bindsym Mod1+s exec smplayer 
+bindsym Mod1+b exec blueman-manager
+bindsym $mod+c exec zenity --calendar
+# bindsym Mod1+m exec totem 
+
 # summon most used apps
 bindsym $mod+F1 [class="Firefox"]       move workspace current
 bindsym $mod+F2 [class="terminal"]      move workspace current
 bindsym $mod+F3 [class="Thunderbird"]   move workspace current
+bindsym $mod+F4 [class="Rhythmbox"]   move workspace current
 #bindsym $mod+F3 [class="Thunderbird"]   move workspace current
 
 # Get me to the next open VIM instance
@@ -66,15 +84,15 @@ bindsym Ctrl+grave scratchpad show
 
 # Screen Shots
 bindsym Print exec scrot -e 'mv $f $pictures_folder/Scrot/$f'
-bindsym Mod4+Print exec scrot -u -e 'mv $f $pictures_folder/Scrot/$f'
+bindsym Mod1+Print exec scrot -u -e 'mv $f $pictures_folder/Scrot/$f'
 bindsym $mod+Print exec scrot -e 'mv $f $pictures_folder/Scrot/$f && gimp $pictures_folder/Scrot/$f'
-bindsym $mod+Mod4+Print exec scrot -u -e 'mv $f $pictures_folder/Scrot/$f && gimp $pictures_folder/Scrot/$f'
+bindsym $mod+Mod1+Print exec scrot -u -e 'mv $f $pictures_folder/Scrot/$f && gimp $pictures_folder/Scrot/$f'
 
 # move workspace to outputs
-bindsym $mod+Mod4+Left  move workspace to output left
-bindsym $mod+Mod4+Down  move workspace to output down
-bindsym $mod+Mod4+Up    move workspace to output up
-bindsym $mod+Mod4+Right move workspace to output right
+bindsym $mod+Mod1+Left  move workspace to output left
+bindsym $mod+Mod1+Down  move workspace to output down
+bindsym $mod+Mod1+Up    move workspace to output up
+bindsym $mod+Mod1+Right move workspace to output right
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -93,8 +111,8 @@ font pango:Monaco 10
 #font pango:Ubuntu 10
 
 # next/previous workspace
-bindsym Mod4+Tab workspace next
-bindsym Mod4+Shift+Tab workspace prev
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+s layout stacking
@@ -193,7 +211,7 @@ bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -260,21 +278,17 @@ mode "$mode_external_pos" {
 }
 bindsym $mod+Shift+s mode "$mode_external_pos"
 
-# thin borders
-hide_edge_borders both
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     tray_output primary
     position top
-    mode dock
-    #mode hide     
-    hidden_state hide
-    status_command i3status --config ~/.i3status.conf
-    #status_command ~/.i3/conky/conky-i3bar
+    #status_command i3status --config ~/.i3status.conf
+    status_command $HOME/.i3/conky-i3bar
     #status_command conky -c ~/.i3/conky/conky-i3bar
+    #status_command conky -c ~/.i3/conkyrc_i3bar
     #status_command ~/.i3/conky.sh
+    mode dock
     workspace_buttons yes
     binding_mode_indicator yes
     font pango: FontAwesome 11
@@ -286,7 +300,7 @@ bar {
 
         focused_workspace  #ffffff #285577
         active_workspace   #cccccc #333333
-        inactive_workspace #333333 #222222
+        #inactive_workspace #333333 #222222
         urgent_workspace   #ffffff #900000
     }
 }
@@ -308,20 +322,17 @@ client.focused          #c10101 #880404 #ffffff #00AA00
 exec --no-startup-id xset dpms 600
 
 ## 壁纸(须先安装feh)
-exec --no-startup-id feh --bg-scale "$HOME/pictures/ubuntu.jpg"
-
-# key bindings
-bindsym Mod4+f exec firefox  # start Firefox
-bindsym Mod4+t exec thunderbird # start Thunderbird
+exec --no-startup-id feh --bg-scale "$HOME/Pictures/ubuntu.jpg"
 
 ## Autostart section
-exec --no-startup-id firefox
-#exec --no-startup-id guake
-#exec --no-startup-id nm-applet
-#exec --no-startup-id gnome-sound-applet
-exec --no-startup-id gnome-terminal
+exec --no-startup-id guake
+exec --no-startup-id nm-applet
+exec --no-startup-id gnome-sound-applet
 #exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id thunderbird
+#exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
+#exec --no-startup-id firefox
+#exec --no-startup-id gnome-terminal
+#exec --no-startup-id thunderbird
 #exec dropbox start
 #exec pulseaudio -start
 #exec --no-startup-id conky -c ~/.i3/conky/conky.conf
