@@ -59,8 +59,8 @@ for_window [title="Pidgin"] move left; resize shrink right 31px or 31 ppt
 bindsym Mod1+r exec rhythmbox
 bindsym Mod1+f exec firefox 
 bindsym Mod1+g exec guake
-bindsym Mod1+t exec thunderbird 
-bindsym Mod1+d exec deepin-music-player
+bindsym Mod1+e exec thunderbird 
+bindsym Mod1+m exec deepin-music-player
 bindsym Mod1+s exec smplayer 
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
