@@ -5,7 +5,7 @@
 set $mod Mod4
 set $i3_path $HOME/.i3
 set $pictures_folder $HOME/.i3/pictures/
-set $screen_scrot $HOME/Pictures/Scrot/
+set $screen_scrot /home/anton/Pictures/Scrot/
 
 # Hide borders
 # hide_edge_borders none
