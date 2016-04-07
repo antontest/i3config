@@ -16,11 +16,11 @@ new_window none
 for_window [class="^.*"] border pixel 
 
 # Fancy names for workspaces
-set $w1  Web
-set $w2  Terminal
-set $w3  Mail
-set $w4  Music
-set $w5  Moive
+set $w1  
+set $w2  
+set $w3  
+set $w4  
+set $w5  
 set $w6 6
 set $w7 7
 set $w8 8
@@ -132,10 +132,16 @@ bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '5%+'"
 bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '5%-'"
 bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
 
-#bindsym XF86AudioPlay exec "~/.bin/player toggle"
-#bindsym XF86AudioStop exec "~/.bin/player stop"
-#bindsym XF86AudioNext exec "~/.bin/player next"
-#bindsym XF86AudioPrev exec "~/.bin/player previous"
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym Mod1+Up exec --no-startup-id playerctl volume 0.1+
+bindsym Mod1+Down exec --no-startup-id playerctl volume 0.1-
+bindsym Mod1+p exec --no-startup-id playerctl play-pause
+bindsym Mod1+Left exec --no-startup-id playerctl prev
+bindsym Mod1+Right exec --no-startup-id playerctl next
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
