@@ -16,11 +16,11 @@ new_window none
 for_window [class="^.*"] border pixel 
 
 # Fancy names for workspaces
-set $w1 1: Web
-set $w2 2: Terminal
-set $w3 3: Mail
-set $w4 4: Music
-set $w5 5: Moive
+set $w1  Web
+set $w2  Terminal
+set $w3  Mail
+set $w4  Music
+set $w5  Moive
 set $w6 6
 set $w7 7
 set $w8 8
@@ -294,7 +294,8 @@ bar {
     mode dock
     workspace_buttons yes
     binding_mode_indicator yes
-    font pango: FontAwesome 11
+    #font pango: DejaVu Sans Mono, Icons 10
+    font pango: FontAwesome, Icons 11
     #font Droid Sans Mono for Powerline:style=Regular:size=9:antialias=true
 
     colors {

@@ -31,21 +31,21 @@ xftfont terminus:size=9
 
 TEXT
   ## network status
-  [{ "full_text" : "WiFi ↓:${downspeed wlan0} ↑:${upspeed wlan0}" , "color" : "\#00B386"},
+  [{ "full_text" : " ${downspeed wlan0} ${upspeed wlan0}" , "color" : "\#00B386"},
   ## CPU Info
   # [{ "full_text" : "▣ CPU: ${cpu}% - [$cpubar] " , "color" : "\#ffffff" },
-  { "full_text" : "▣ CPU: ${cpu}%" , "color" : "\#ffffff" },
+  { "full_text" : " ${cpu}%" , "color" : "\#ffffff" },
   # [{ "full_text" : "WiFi Down: ${downspeed wlan0} Up: ${upspeed wlan0}" , "color" : "\#00B386"},
   ## RAM Info
-  { "full_text" : "≣ MEM: ${mem} [$memmax]" , "color" : "\#C8C039" },
+  { "full_text" : "${mem} [$memmax]" , "color" : "\#C8C039" },
   # { "full_text" : "≣ MEM: ${mem} " , "color" : "\#C8C039" },
   ## Disk Space
-  { "full_text" : "■ DISK: ${fs_used /}/${fs_size /}" , "color" : "\#00A9B5"},
+  { "full_text" : " ${fs_used /}/${fs_size /}" , "color" : "\#00A9B5"},
   # { "full_text" : "■ DISK: ${fs_used /}/${fs_size /} - [${fs_bar}]" , "color" : "\#00A9B5"},
   # { "full_text" : "■ DISK: ${fs_used /}" , "color" : "\#00A9B5"},
   ## Date-Time
-  { "full_text" : "${time %F %H:%M:%S}" , "color" : "\#00B386"},
+  { "full_text" : " ${time %F %H:%M:%S}" , "color" : "\#00B386"},
   ## Battery Percentage
-  { "full_text":"⚡ ${battery_percent BAT0}%", "color" : "\#ff0066" },
+  { "full_text":" ${battery_percent BAT0}%", "color" : "\#ff0066" },
   ## Volume Percentage
-  { "full_text" : "♫ ${exec pactl list sinks | grep '0:.*%' | sed 's/.*0:\ *\(.*\)1:.*/\1/gp' -n} " , "color" : "\#FFA039"},
+  { "full_text" : " ${exec pactl list sinks | grep '0:.*%' | sed 's/.*0:\ *\(.*\)1:.*/\1/gp' -n} " , "color" : "\#FFA039"},
