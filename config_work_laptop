@@ -10,6 +10,7 @@ set $screen_scrot /home/anton/Pictures/Scrot/
 # Hide borders
 # hide_edge_borders none
 hide_edge_borders both
+new_window 1pixel
  
 # Automatically hide titlebar
 new_window none
@@ -67,7 +68,8 @@ bindsym Mod1+s exec smplayer
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
 bindsym Mod1+c exec kazam
-bindsym Mod1+d exec uget-gtk
+bindsym Mod1+w exec rofi -show window -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 8 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
 # bindsym Mod1+m exec totem 
 
 # summon most used apps
@@ -111,14 +113,16 @@ bindsym $mod+Shift+y exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Monaco 10
-#font pango:Ubuntu 10
+# font pango:Monaco 10
+# font pango:Ubuntu 10
+font pango: Terminess Powerline 12
 
 # next/previous workspace
 bindsym Mod1+Tab workspace next
 bindsym Ctrl+Mod1+Tab exec $i3_path/winmenu.py 12
 bindsym Mod1+Shift+Tab workspace prev
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+z workspace back_and_forth
+bindsym $mod+Shift+z move container to workspace back_and_forth
 
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -304,6 +308,7 @@ bar {
     binding_mode_indicator yes
     #font pango: DejaVu Sans Mono, Icons 10
     font pango: FontAwesome, Icons 11
+    # Font for the bar
     #font Droid Sans Mono for Powerline:style=Regular:size=9:antialias=true
 
     colors {
@@ -314,6 +319,16 @@ bar {
         active_workspace   #cccccc #333333
         #inactive_workspace #333333 #222222
         urgent_workspace   #ffffff #900000
+
+        # new color
+        background #2C2C2C
+        statusline #00C1FF
+        separator #EEEEEE
+        #                  BORDER  BACKGR. TEXT
+        focused_workspace  #2C2C2C #2C2C2C #FCFB24
+        active_workspace   #2C2C2C #2C2C2C #FFFFFF 
+        inactive_workspace #2C2C2C #2C2C2C #FFFFFF 
+        urgent_workspace   #2C2C2C #2C2C2C #FFFFFF 
     }
 }
 
@@ -327,8 +342,17 @@ bar {
 client.unfocused          #4c7899 #24364F #aaaaaa #2e9ef4
 client.focused          #c10101 #880404 #ffffff #00AA00
 
+# Color settings
+client.focused #99CCFF #99CCFF #FFFFFF #9966FF
+client.focused_inactive #2C2C2C #2C2C2C #287373 #2C2C2C
+client.unfocused #2C2C2C #2C2C2C #287373 #2C2C2C
+client.urgent #007B7F #007B7F #ffffff #007B7F
+
 # This prevent the focus to follow mouse movements
-#focus_follows_mouse no
+focus_follows_mouse no
+
+# Enable workspace back and forth
+workspace_auto_back_and_forth yes
 
 ## 自动关闭屏幕
 exec --no-startup-id xset dpms 600
