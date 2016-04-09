@@ -11,6 +11,7 @@ set $screen_scrot /home/anton/Pictures/Scrot/
 # hide_edge_borders none
 hide_edge_borders both
 new_window 1pixel
+# focus_on_window_activation focus
  
 # Automatically hide titlebar
 new_window none
