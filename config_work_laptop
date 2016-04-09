@@ -67,6 +67,7 @@ bindsym Mod1+s exec smplayer
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
 bindsym Mod1+c exec kazam
+bindsym Mod1+d exec uget-gtk
 # bindsym Mod1+m exec totem 
 
 # summon most used apps
@@ -115,6 +116,7 @@ font pango:Monaco 10
 
 # next/previous workspace
 bindsym Mod1+Tab workspace next
+bindsym Ctrl+Mod1+Tab exec $i3_path/winmenu.py 12
 bindsym Mod1+Shift+Tab workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
