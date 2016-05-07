@@ -7,14 +7,16 @@ set $i3_path $HOME/.i3
 set $pictures_folder $HOME/.i3/pictures/
 set $screen_scrot /home/anton/Pictures/Scrot/
 
+### Borders ###
+new_window pixel 4
+new_float pixel 4
+
 # Hide borders
 # hide_edge_borders none
 hide_edge_borders both
-new_window 1pixel
 # focus_on_window_activation focus
  
 # Automatically hide titlebar
-new_window none
 for_window [urgent="latest" class="^.*"] border pixel 
 
 # Fancy names for workspaces
@@ -36,35 +38,35 @@ bindsym $mod+b exec nautilus --no-desktop &
 
 ## Assign section
 assign [class="^Firefox$"]      → $w1
+assign [class="^Thunderbird$"]  → $w3
+assign [class="clementine"]  → $w4
 #assign [title="^DownThemAll$"]  → $w1
 #assign [title="^Print$"]        → $w1
 #assign [class="Pidgin"]         → $w3
 #assign [class="Buddy List"]     → $w3
-#assign [class="^Thunderbird$"]  → $w3
-assign [class="(?i)Terminal"] → $w2
-assign [class="(?i)Thunderbird"]  → $w3
-assign [class="(?i)Rhythmbox"]  → $w4
-assign [class="Deepin-music-player"]  → $w4
-assign [class="(?i)Guake"]  → $w2
+#assign [class="(?i)Terminal"] → $w2
+#assign [class="(?i)Thunderbird"]  → $w3
+#assign [class="(?i)Rhythmbox"]  → $w4
+#assign [class="(?i)Guake"]  → $w2
 ## assign [class="(?i)Totem"]  → $w5
 # assign [class="(?i)Smplayer"]  → $w5
-assign [class="(?i)Kazam"]  → $w5
+#assign [class="(?i)Kazam"]  → $w5
 
 #for_window [class="Guake"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [title="Calculator"] floating enable
-for_window [title="Calculator"] border 1pixel
+# for_window [title="Calculator"] border 1pixel
 for_window [urgent="latest" class="terminal"] border 1pixel
 for_window [class="Mail"] focus border 1pixel
 #for_window [class="^Thunderbird$"] move workspace $w4
 for_window [title="Pidgin"] move left; resize shrink right 31px or 31 ppt
 
 # key bindings
-bindsym Mod1+r exec rhythmbox
+# bindsym Mod1+r exec rhythmbox
 bindsym Mod1+f exec firefox 
 bindsym Mod1+g exec guake
 bindsym Mod1+e exec thunderbird 
-bindsym Mod1+m exec deepin-music-player
+bindsym Mod1+m exec clementine
 bindsym Mod1+s exec smplayer 
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
@@ -72,6 +74,7 @@ bindsym Mod1+c exec kazam
 bindsym Mod1+w exec rofi -show window -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 8 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
 # bindsym Mod1+m exec totem 
+# bindsym Mod1+m exec deepin-music-player
 
 # find window
 bindsym Ctrl+Mod1+f exec python $i3_path/next_window.py "Firefox" firefox
@@ -160,13 +163,14 @@ bindsym Mod1+Right exec --no-startup-id playerctl next
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installebindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -l 5 -fn 'xft:Terminus:pixelsize=8' -nb '#191919' -nf '#9ac0cd' -sb '#191919' -sf '#bf3f34' -p 'search app >> '"
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -b -fn 'xft:Terminus:pixelsize=8' -nb '#191919' -nf '#9ac0cd' -sb '#191919' -sf '#bf3f34' -p 'search app >> '"
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -b -fn 'xft:Terminus:pixelsize=8' -nb '#191919' -nf '#9ac0cd' -sb '#191919' -sf '#bf3f34' -p 'search app >> '"
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="rofi -show run -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -hlbg '#000000' -o 85"
 
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
-bindsym $mod+ograve focus right
+bindsym $mod+grave focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -178,7 +182,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ograve move right
+bindsym $mod+Shift+grave move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -279,7 +283,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_move Move workspace: (L)eft, (Right)
+set $mode_move Move workspace: (L)eft, (R)ight
 mode "$mode_move" {
         bindsym l move workspace to output left
         bindsym r move workspace to output right
@@ -360,12 +364,15 @@ workspace_auto_back_and_forth yes
 exec --no-startup-id xset dpms 600
 
 ## 壁纸(须先安装feh)
-exec --no-startup-id feh --bg-scale "$HOME/Pictures/ubuntu.jpg"
+exec --no-startup-id feh --bg-scale "$pictures_folder/ubuntu-background-beatiful.jpg"
 
 ## Autostart section
-exec --no-startup-id guake
+exec killall -q dunst
+exec killall -q notify-osd
+exec --no-startup-id dunst -config ~/.i3/dunst/dunst.rc
 exec --no-startup-id nm-applet
-exec --no-startup-id gnome-sound-applet
+exec --no-startup-id guake
+#exec --no-startup-id gnome-sound-applet
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
 #exec --no-startup-id firefox
