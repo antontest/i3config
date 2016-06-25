@@ -31,7 +31,8 @@ xftfont terminus:size=9
 
 TEXT
   ## network status
-  [{ "full_text" : " ${downspeed wlan0} ${upspeed wlan0}" , "color" : "\#00B386"},
+  [
+  { "full_text" : " ${downspeed wlp4s0} ${upspeed wlp4s0}" , "color" : "\#00B386"},
   { "full_text" : "${exec show_music_info}" , "color" : "\#BB8899"},
   ## CPU Info
   # [{ "full_text" : "▣ CPU: ${cpu}% - [$cpubar] " , "color" : "\#ffffff" },
@@ -49,5 +50,6 @@ TEXT
   ## Battery Percentage
   { "full_text":" ${battery_percent BAT0}%", "color" : "\#ffff00" },
   ## Volume Percentage
-  { "full_text" : " ${exec pactl list sinks | grep "front.left:" | sed "s/.*front.left:.*\/ *\(.*\)%.*front.right.*/\1/g"}" , "color" : "\#FFA039"}],
-  #{ "full_text" : " ${exec pactl list sinks | grep '0:.*%' | sed 's/.*0:\ *\(.*\)1:.*/\1/gp' -n} " , "color" : "\#FFA039"}],
+  #{ "full_text" : " ${exec pactl list sinks | grep '0:.*%' | sed 's/.*0:\ *\(.*\)1:.*/\1/gp' -n} " , "color" : "\#FFA039"}
+  { "full_text" : " ${exec pactl list sinks | grep "front.left:" | sed "s/.*front.left:.*\/ *\(.*\)%.*front.right.*/\1/g" | sed -n '$p;'}" , "color" : "\#FFA039"}
+  ],

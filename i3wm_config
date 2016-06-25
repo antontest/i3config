@@ -71,7 +71,8 @@ bindsym Mod1+s exec smplayer
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
 bindsym Mod1+c exec kazam
-bindsym Mod1+w exec rofi -show window -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+bindsym Mod1+v exec virtualbox
+bindsym Mod1+w exec rofi -show window -font "snap 9" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 8 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
 # bindsym Mod1+m exec totem 
 # bindsym Mod1+m exec deepin-music-player
@@ -124,7 +125,7 @@ bindsym $mod+Shift+y exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 # chose a FreeType font, such as:
 # font pango:Monaco 10
 # font pango:Ubuntu 10
-font pango: Terminess Powerline 12
+font pango: Terminess Powerline 16
 
 # next/previous workspace
 bindsym Mod1+Tab workspace next
@@ -311,7 +312,7 @@ bar {
     tray_output primary
     workspace_buttons yes
     binding_mode_indicator yes
-    font pango: FontAwesome, Icons 11
+    font pango: FontAwesome, Icons 13
     status_command /home/anton/.i3/conky.sh
     # font pango: DejaVu Sans Mono, Icons 10
     # Font for the bar
@@ -361,7 +362,7 @@ focus_follows_mouse no
 workspace_auto_back_and_forth yes
 
 ## 自动关闭屏幕
-exec --no-startup-id xset dpms 600
+# exec --no-startup-id xset dpms 600
 
 ## 壁纸(须先安装feh)
 exec --no-startup-id feh --bg-scale "$pictures_folder/ubuntu-background-beatiful.jpg"
