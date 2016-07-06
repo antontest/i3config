@@ -25,7 +25,7 @@ set $w2 
 set $w3  
 set $w4  
 set $w5  
-set $w6 6
+set $w6 
 set $w7 7
 set $w8 8
 set $w9 9
@@ -38,8 +38,10 @@ bindsym $mod+b exec nautilus --no-desktop &
 
 ## Assign section
 assign [class="^Firefox$"]      → $w1
+assign [class="^chromium-browser$"]  → $w1
 assign [class="^Thunderbird$"]  → $w3
 assign [class="clementine"]  → $w4
+assign [class="VirtualBox"]  → $w6
 #assign [title="^DownThemAll$"]  → $w1
 #assign [title="^Print$"]        → $w1
 #assign [class="Pidgin"]         → $w3
@@ -64,6 +66,7 @@ for_window [title="Pidgin"] move left; resize shrink right 31px or 31 ppt
 # key bindings
 # bindsym Mod1+r exec rhythmbox
 bindsym Mod1+f exec firefox 
+bindsym Mod1+r exec chromium-browser
 bindsym Mod1+g exec guake
 bindsym Mod1+e exec thunderbird 
 bindsym Mod1+m exec clementine
@@ -373,10 +376,10 @@ exec killall -q notify-osd
 exec --no-startup-id dunst -config ~/.i3/dunst/dunst.rc
 exec --no-startup-id nm-applet
 exec --no-startup-id guake
+exec --no-startup-id firefox
 #exec --no-startup-id gnome-sound-applet
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
-#exec --no-startup-id firefox
 #exec --no-startup-id gnome-terminal
 #exec --no-startup-id thunderbird
 #exec dropbox start
