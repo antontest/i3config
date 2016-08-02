@@ -1,5 +1,4 @@
 # vim:filetype=i3
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
@@ -26,9 +25,9 @@ set $w3 
 set $w4  
 set $w5  
 set $w6 
-set $w7 7
-set $w8 8
-set $w9 9
+set $w7 
+set $w8 
+set $w9 
 set $w10 10
 
 ## my custom binds
@@ -42,6 +41,9 @@ assign [class="^chromium-browser$"]  → $w1
 assign [class="^Thunderbird$"]  → $w3
 assign [class="clementine"]  → $w4
 assign [class="VirtualBox"]  → $w6
+assign [class="Insight3.exe"]  → $w6
+assign [class="wechat"]  → $w8
+assign [class="haroopad"]  → $w9
 #assign [title="^DownThemAll$"]  → $w1
 #assign [title="^Print$"]        → $w1
 #assign [class="Pidgin"]         → $w3
@@ -70,11 +72,14 @@ bindsym Mod1+r exec chromium-browser
 bindsym Mod1+g exec guake
 bindsym Mod1+e exec thunderbird 
 bindsym Mod1+m exec clementine
-bindsym Mod1+s exec smplayer 
+#bindsym Mod1+s exec smplayer 
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
 bindsym Mod1+c exec kazam
 bindsym Mod1+v exec virtualbox
+bindsym Mod1+q exec wechat
+bindsym Mod1+h exec haroopad
+bindsym Mod1+s exec wine ~/.wine/drive_c/Program\ Files/Source\ Insight\ 3/Insight3.exe
 bindsym Mod1+w exec rofi -show window -font "snap 9" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 8 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
 # bindsym Mod1+m exec totem 
@@ -371,14 +376,14 @@ workspace_auto_back_and_forth yes
 exec --no-startup-id feh --bg-scale "$pictures_folder/ubuntu-background-beatiful.jpg"
 
 ## Autostart section
-exec killall -q dunst
-exec killall -q notify-osd
-exec --no-startup-id dunst -config ~/.i3/dunst/dunst.rc
+# exec killall -q dunst
+# exec killall -q notify-osd
+# exec --no-startup-id dunst -config ~/.i3/dunst/dunst.rc
 exec --no-startup-id nm-applet
 exec --no-startup-id guake
+exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id firefox
 #exec --no-startup-id gnome-sound-applet
-#exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
 #exec --no-startup-id gnome-terminal
 #exec --no-startup-id thunderbird
