@@ -1,17 +1,15 @@
 # vim:filetype=i3
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# set mod (Mod1 --> Alt, Mod4 --> Win)
 set $mod Mod4
 set $i3_path $HOME/.i3
 set $pictures_folder $HOME/.i3/pictures/
 set $screen_scrot /home/anton/Pictures/Scrot/
 
-### Borders ###
+# Hide borders
 new_window pixel 4
 new_float pixel 4
-
-# Hide borders
-# hide_edge_borders none
 hide_edge_borders both
 # focus_on_window_activation focus
  
@@ -30,11 +28,6 @@ set $w8 
 set $w9 
 set $w10 10
 
-## my custom binds
-bindsym $mod+Ctrl+l exec i3lock -c 000000 -i $pictures_folder/ubuntu-lock.png -t # && sudo pm-suspend
-#bindsym $mod+Ctrl+l exec --no-startup-id $i3_path/i3exit lock, mode "default"
-bindsym $mod+b exec nautilus --no-desktop &
-
 ## Assign section
 assign [class="^Firefox$"]      → $w1
 assign [class="^chromium-browser$"]  → $w1
@@ -42,37 +35,42 @@ assign [class="^Thunderbird$"]  → $w3
 assign [class="clementine"]  → $w4
 assign [class="VirtualBox"]  → $w6
 assign [class="Insight3.exe"]  → $w6
-assign [class="wechat"]  → $w8
-assign [class="haroopad"]  → $w9
-#assign [title="^DownThemAll$"]  → $w1
-#assign [title="^Print$"]        → $w1
-#assign [class="Pidgin"]         → $w3
-#assign [class="Buddy List"]     → $w3
-#assign [class="(?i)Terminal"] → $w2
-#assign [class="(?i)Thunderbird"]  → $w3
-#assign [class="(?i)Rhythmbox"]  → $w4
-#assign [class="(?i)Guake"]  → $w2
-## assign [class="(?i)Totem"]  → $w5
+assign [title="(?i)WeChat"]  → $w8
+assign [title="(?i)Haroopad"]  → $w9
+# assign [title="^DownThemAll$"]  → $w1
+# assign [title="^Print$"]        → $w1
+# assign [class="Pidgin"]         → $w3
+# assign [class="Buddy List"]     → $w3
+# assign [class="(?i)Terminal"] → $w2
+# assign [class="(?i)Thunderbird"]  → $w3
+# assign [class="(?i)Rhythmbox"]  → $w4
+# assign [class="(?i)Guake"]  → $w2
+# assign [class="(?i)Totem"]  → $w5
 # assign [class="(?i)Smplayer"]  → $w5
-#assign [class="(?i)Kazam"]  → $w5
+# assign [class="(?i)Kazam"]  → $w5
 
-#for_window [class="Guake"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [title="Calculator"] floating enable
-# for_window [title="Calculator"] border 1pixel
 for_window [urgent="latest" class="terminal"] border 1pixel
 for_window [class="Mail"] focus border 1pixel
-#for_window [class="^Thunderbird$"] move workspace $w4
 for_window [title="Pidgin"] move left; resize shrink right 31px or 31 ppt
+# for_window [class="Guake"] floating enable
+# for_window [title="Calculator"] border 1pixel
+# for_window [class="^Thunderbird$"] move workspace $w4
 
-# key bindings
-# bindsym Mod1+r exec rhythmbox
+# lock desktop
+bindsym $mod+Ctrl+l exec i3lock -c 000000 -i $pictures_folder/ubuntu-lock.png -t # && sudo pm-suspend
+# bindsym $mod+Ctrl+l exec --no-startup-id $i3_path/i3exit lock, mode "default"
+
+# open file explorer
+bindsym $mod+b exec nautilus --no-desktop &
+
+# key bindings for opening software
 bindsym Mod1+f exec firefox 
 bindsym Mod1+r exec chromium-browser
 bindsym Mod1+g exec guake
 bindsym Mod1+e exec thunderbird 
 bindsym Mod1+m exec clementine
-#bindsym Mod1+s exec smplayer 
 bindsym Mod1+b exec blueman-manager
 bindsym $mod+c exec zenity --calendar
 bindsym Mod1+c exec kazam
@@ -80,22 +78,26 @@ bindsym Mod1+v exec virtualbox
 bindsym Mod1+q exec wechat
 bindsym Mod1+h exec haroopad
 bindsym Mod1+s exec wine ~/.wine/drive_c/Program\ Files/Source\ Insight\ 3/Insight3.exe
-bindsym Mod1+w exec rofi -show window -font "snap 9" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
-bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 8 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
+bindsym Mod1+w exec rofi -show window -font "snap 12" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 12 -f -i -fn '--terminus------------*' -nb '#03030D' -nf '#ffffff' -sb '#ff005f' -sf '#ffffff'"
+# bindsym Mod1+s exec smplayer 
 # bindsym Mod1+m exec totem 
 # bindsym Mod1+m exec deepin-music-player
+# bindsym Mod1+r exec rhythmbox
 
 # find window
 bindsym Ctrl+Mod1+f exec python $i3_path/next_window.py "Firefox" firefox
-bindsym Ctrl+Mod1+t exec python $i3_path/next_window.py "Guake" guake
-bindsym Ctrl+Mod1+e exec python $i3_path/next_window.py "Thunderbird" thunderbird
+bindsym Ctrl+Mod1+g exec python $i3_path/next_window.py "Guake" guake
+bindsym Ctrl+Mod1+t exec python $i3_path/next_window.py "Thunderbird" thunderbird
+bindsym Ctrl+Mod1+w exec python $i3_path/next_window.py "WeChat" wechat
+bindsym Ctrl+Mod1+h exec python $i3_path/next_window.py "Haroopad" haroopad
 
 # summon most used apps
 bindsym $mod+F1 [class="Firefox"]       move workspace current
-bindsym $mod+F2 [class="terminal"]      move workspace current
+bindsym $mod+F2 [class="Guake"]      move workspace current
 bindsym $mod+F3 [class="Thunderbird"]   move workspace current
-bindsym $mod+F4 [class="Rhythmbox"]   move workspace current
-#bindsym $mod+F3 [class="Thunderbird"]   move workspace current
+bindsym $mod+F4 [class="WeChat"]   move workspace current
+# bindsym $mod+F4 [class="Rhythmbox"]   move workspace current
 
 # Get me to the next open VIM instance
 #bindsym Ctrl+grave [class="terminal"] focus
@@ -137,10 +139,10 @@ font pango: Terminess Powerline 16
 
 # next/previous workspace
 bindsym Mod1+Tab workspace next
-bindsym Ctrl+Mod1+Tab exec $i3_path/winmenu.py 12
-bindsym Mod1+Shift+Tab workspace prev
+bindsym Shift+Tab workspace prev
 bindsym $mod+z workspace back_and_forth
 bindsym $mod+Shift+z move container to workspace back_and_forth
+# bindsym Ctrl+Mod1+Tab exec $i3_path/winmenu.py 12
 
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -173,13 +175,14 @@ bindsym Mod1+Right exec --no-startup-id playerctl next
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installebindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -l 5 -fn 'xft:Terminus:pixelsize=8' -nb '#191919' -nf '#9ac0cd' -sb '#191919' -sf '#bf3f34' -p 'search app >> '"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -b -fn 'xft:Terminus:pixelsize=8' -nb '#191919' -nf '#9ac0cd' -sb '#191919' -sf '#bf3f34' -p 'search app >> '"
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="rofi -show run -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -hlbg '#000000' -o 85"
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="rofi -show run -font 'snap 10' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -hlbg '#000000' -o 85"
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="rofi -show run -font 'snap 14' -fg '#505050' -bg '#000000' -hlfg '#ffb964' -hlbg '#000000' -o 85"
 
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+grave focus right
+bindsym $mod+i focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -190,8 +193,8 @@ bindsym $mod+Right focus right
 # move focused window
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+grave move right
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -376,16 +379,16 @@ workspace_auto_back_and_forth yes
 exec --no-startup-id feh --bg-scale "$pictures_folder/ubuntu-background-beatiful.jpg"
 
 ## Autostart section
+exec --no-startup-id guake
+exec --no-startup-id nm-applet
+exec --no-startup-id firefox
 # exec killall -q dunst
 # exec killall -q notify-osd
 # exec --no-startup-id dunst -config ~/.i3/dunst/dunst.rc
-exec --no-startup-id nm-applet
-exec --no-startup-id guake
-exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id firefox
-#exec --no-startup-id gnome-sound-applet
-#exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
-#exec --no-startup-id gnome-terminal
-#exec --no-startup-id thunderbird
-#exec dropbox start
-#exec pulseaudio -start
+# exec --no-startup-id gnome-settings-daemon
+# exec --no-startup-id gnome-sound-applet
+# exec --no-startup-id python3 $HOME/.i3/traycalender/traycalendar.py
+# exec --no-startup-id gnome-terminal
+# exec --no-startup-id thunderbird
+# exec dropbox start
+# exec pulseaudio -start
