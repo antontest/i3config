@@ -1,7 +1,7 @@
 # vim:filetype=i3
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# set mod (Mod1 --> Alt, Mod4 --> Win)
+# set mod (Mod1 --> Alt, Mod4 --> Win) [xmodmap -pm view mod]
 set $mod Mod4
 set $i3_path $HOME/.i3
 set $pictures_folder $HOME/.i3/pictures/
@@ -139,7 +139,7 @@ font pango: Terminess Powerline 16
 
 # next/previous workspace
 bindsym Mod1+Tab workspace next
-bindsym Shift+Tab workspace prev
+bindsym Mod1+grave workspace prev
 bindsym $mod+z workspace back_and_forth
 bindsym $mod+Shift+z move container to workspace back_and_forth
 # bindsym Ctrl+Mod1+Tab exec $i3_path/winmenu.py 12
