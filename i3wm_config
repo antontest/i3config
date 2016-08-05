@@ -86,11 +86,11 @@ bindsym Mod4+Tab exec quickswitch.py -d "dmenu -b -l 12 -f -i -fn '--terminus---
 # bindsym Mod1+r exec rhythmbox
 
 # find window
-bindsym Ctrl+Mod4+f exec python $i3_path/next_window.py "Firefox" firefox
-bindsym Ctrl+Mod4+g exec python $i3_path/next_window.py "Guake" guake
-bindsym Ctrl+Mod4+t exec python $i3_path/next_window.py "Thunderbird" thunderbird
-bindsym Ctrl+Mod4+w exec python $i3_path/next_window.py "WeChat" wechat
-bindsym Ctrl+Mod4+h exec python $i3_path/next_window.py "Haroopad" haroopad
+bindsym Ctrl+Mod1+f exec python $i3_path/next_window.py "Firefox" firefox
+bindsym Ctrl+Mod1+g exec python $i3_path/next_window.py "Guake" guake
+bindsym Ctrl+Mod1+t exec python $i3_path/next_window.py "Thunderbird" thunderbird
+bindsym Ctrl+Mod1+w exec python $i3_path/next_window.py "WeChat" wechat
+bindsym Ctrl+Mod1+h exec python $i3_path/next_window.py "Haroopad" haroopad
 
 # summon most used apps
 bindsym $mod+F1 [class="Firefox"]       move workspace current
