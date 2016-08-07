@@ -76,6 +76,7 @@ assign [title="(?i)Guake"]          → $w2
 assign [class="^Thunderbird$"]      → $w3
 assign [class="(?i)Clementine"]     → $w4
 assign [class="(?i)Smplayer"]       → $w5
+assign [class="(?i)mplayer"]        → $w5
 assign [class="VirtualBox"]         → $w6
 assign [class="Insight3.exe"]       → $w6
 assign [title="(?i)WeChat"]         → $w8
