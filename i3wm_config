@@ -19,6 +19,7 @@ set $winmod   Mod4
 set $i3_path         $HOME/.i3
 set $pictures_folder $HOME/.i3/pictures/
 set $screen_scrot    /home/anton/Pictures/Scrot/
+set $compton_path    $HOME/.i3/compton/compton.conf
 
 ## Set the gaps between windows.  This is for i3-gaps only
 set $gapsinner 22
@@ -201,6 +202,9 @@ bindsym $winmod+b exec nautilus --no-desktop &
 
 ## Filemanager
 bindsym Shift+$winmod+f exec xfce4-terminal -e ranger
+
+## Touchpad controls
+bindsym Shift+$altmod+t exec ~/.i3/scripts/toggle_touchpad # toggle Touchpad
 
 ## Get me to the next open VIM instance
 # bindsym Ctrl+grave [class="terminal"] focus
@@ -465,6 +469,7 @@ exec --no-startup-id feh --bg-scale "$pictures_folder/yuan_lv.jpg"
 #
 # # # # # # # # # # # # # # # # # # #
 ## Autostart section
+exec --no-startup-id compton -f --config $compton_path
 exec --no-startup-id killall -q dunst
 exec --no-startup-id killall -q notify-osd
 exec --no-startup-id dunst-restart
